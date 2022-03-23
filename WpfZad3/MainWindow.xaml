@@ -1,0 +1,85 @@
+﻿<Window x:Class="WpfZad3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfZad3"
+        mc:Ignorable="d"
+        Title="Drukarnia" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" VerticalAlignment="Center" LastChildFill="True" Margin="5">
+            <Label>Nakład</Label>
+            <TextBox x:Name="QuantityTextBox" TextChanged="QuantityTextBox_TextChanged" VerticalContentAlignment="Center"></TextBox>
+        </DockPanel>
+
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0">Format</Label>
+            <Slider x:Name="FormatSlider" Grid.Column="1" VerticalAlignment="Center" IsSnapToTickEnabled="True" Maximum="5" ValueChanged="FormatSlider_ValueChanged"></Slider>
+            <Label x:Name="FormatCostLabel" Grid.Column="2">A5 - cena 20gr/szt.</Label>
+        </Grid>
+        
+        <DockPanel Grid.Row="2" LastChildFill="True" Margin="5" VerticalAlignment="Center">
+            <CheckBox x:Name="ColoredPaperCheckBox" VerticalContentAlignment="Center" Margin="5" Checked="ColoredPaperCheckBox_Changed" Unchecked="ColoredPaperCheckBox_Changed">Kolorwy papier - cena + 50% </CheckBox>
+            <ComboBox x:Name="ColorComboBox" Margin="5" IsEnabled="False" SelectionChanged="ColorComboBox_SelectionChanged">
+                <ComboBoxItem>Żółty</ComboBoxItem>
+                <ComboBoxItem>Zielony</ComboBoxItem>
+                <ComboBoxItem>Niebieski</ComboBoxItem>
+                <ComboBoxItem>Czerwony</ComboBoxItem>
+                <ComboBoxItem>Fioletowy</ComboBoxItem>
+            </ComboBox>
+        </DockPanel>
+
+        <Grid Grid.Row="3" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Grid.Column="0" Header="Gramatura" Margin="5">
+                <StackPanel>
+                    <RadioButton Checked="GrammageRadio_Checked" x:Name="DefaultRadiobutton">80g/m^2</RadioButton>
+                    <RadioButton Checked="GrammageRadio_Checked">120g/m^2 - cena x2</RadioButton>
+                    <RadioButton Checked="GrammageRadio_Checked">200g/m^2 - cena x2.5</RadioButton>
+                    <RadioButton Checked="GrammageRadio_Checked">240g/m^2 - cena x3</RadioButton>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Header="Opcje wydruku" Margin="5">
+                <StackPanel>
+                    <CheckBox x:Name="PrintColor" Checked="PrintColor_Changed" Unchecked="PrintColor_Changed">druk w kolorze - cena + 30%</CheckBox>
+                    <CheckBox x:Name="PrintDoubleSide" Checked="PrintDoubleSide_Changed" Unchecked="PrintDoubleSide_Changed">druk dwustronny - cena + 50%</CheckBox>
+                    <CheckBox x:Name="PrintUV" Checked="PrintUV_Changed" Unchecked="PrintUV_Changed">lakie UV - cena + 20%</CheckBox>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Column="2" Header="Termin realizacji" Margin="5">
+                <StackPanel>
+                    <RadioButton Checked="RealizationPriority_Checked" x:Name="DefaultRadiobutton2">Standard</RadioButton>
+                    <RadioButton Checked="RealizationPriority_Checked">Ekspres - cena + 15zł</RadioButton>
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+
+        <Label Grid.Row="4" Margin="5">Podsumowanie zamówienia</Label>
+
+        <TextBox x:Name="OrderDisplayTextBox" Grid.Row="5" IsReadOnly="True" Margin="10"></TextBox>
+
+        <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="OkButton" Margin="5" Padding="15,5,15,5" Click="OkButton_Click">OK</Button>
+            <Button x:Name="CancelButton" Margin="5" Padding="15,5,15,5" Click="CancelButton_Click">Anuluj</Button>
+        </StackPanel>
+    </Grid>
+</Window>
